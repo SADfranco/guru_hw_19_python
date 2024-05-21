@@ -1,6 +1,6 @@
 import os
 import allure
-
+import requests
 
 
 def attach_bstack_video(session_id):

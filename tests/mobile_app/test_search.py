@@ -10,7 +10,7 @@ def test_search_appium_android():
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/search_src_text")).type('Appium')
 
-    with step('Click on the first title'):
+    with step('Verify content found'):
         results = browser.all((AppiumBy.ID, 'org.wikipedia.alpha:id/page_list_item_title'))
         results.should(have.size_greater_than(0))
         results.first.should(have.text('Appium'))
@@ -22,7 +22,7 @@ def test_search_selene_android():
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/search_src_text")).type('Selene')
 
-    with step('Click on the first title'):
+    with step('Verify content found'):
         results = browser.all((AppiumBy.ID, 'org.wikipedia.alpha:id/page_list_item_title'))
         results.should(have.size_greater_than(0))
         results.first.should(have.text('Selene'))
@@ -30,10 +30,10 @@ def test_search_selene_android():
 
 
 @pytest.mark.parametrize("platform", ["ios"], indirect=True)
-def test_search_ios():
+def test_input_text_ios():
     with step('Type search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Button")).click()
-        browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Input")).type('Hello, it is IOS automation test')
+        browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Input")).type('Hello, it is IOS automation test' + '\n')
 
     with step('Verify content found'):
         output_text = browser.element((AppiumBy.ACCESSIBILITY_ID, "Text Output"))

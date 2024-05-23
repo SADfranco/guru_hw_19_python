@@ -46,17 +46,14 @@ def platform(request):
             'sessionName': 'BStack first_test',
 
             # Set your access credentials
-            'userName': os.getenv("SELENOID_LOGIN"),
-            'accessKey': os.getenv("SELENOID_PASS")
+            'userName': os.getenv("BROWSERSTACK_LOGIN"),
+            'accessKey': os.getenv("BROWSERSTACK_PASS")
         }
     })
 
-    # browser.config.driver_remote_url = 'http://hub.browserstack.com/wd/hub'
-    # browser.config.driver_options = options
-
     with allure.step('init app session'):
         browser.config.driver = webdriver.Remote(
-            'http://hub.browserstack.com/wd/hub',
+            os.getenv("BROWSERSTACK_URL"),
             options=options
         )
 

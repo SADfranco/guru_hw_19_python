@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from selene import browser, support
 import os
 
-from selene_in_action.utils import attach
+from utils import attach
 
 from appium import webdriver
 
@@ -65,17 +65,7 @@ def platform(request):
 
     yield
 
-    allure.attach(
-        browser.driver.get_screenshot_as_png(),
-        name='screenshot',
-        attachment_type=allure.attachment_type.PNG,
-    )
-
-    allure.attach(
-        browser.driver.page_source,
-        name='screen xml dump',
-        attachment_type=allure.attachment_type.XML,
-    )
+    attach.attach_screenshot_and_dump(browser)
 
     session_id = browser.driver.session_id
 
